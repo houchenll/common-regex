@@ -28,7 +28,8 @@
 | [^xyz] | 否定字符集，匹配方括号中不包含的任意字符；当`^`出现在方括号内时，不是元字符，表示取消字符集，如`[^c]`表示除了字符c以外的任意字符； |
 | [a-z] | 字符范围。匹配指定范围内的任意字符。例如，“[a-z]”可以匹配“a”到“z”范围内的任意小写字母字符。 |
 | [^a-z] | 排除型的字符范围。匹配任何不在指定范围内的任意字符。例如，“[^a-z]”可以匹配任何不在“a”到“z”范围内的任意字符。 |
-| (pattern) | 字符组，匹配pattern |
+| (pattern) | 定义一个匹配pattern的子表达式。被圆括号匹配到的字符串稍后可以用`\n`引用。 |
+| \n | Matches what the nth marked subexpression matched, where n is a digit from 1 to 9. Also known as a backreference. |
 | (pattern1\| pattern2) | 字符组，使用`\|`后表示或，按顺序匹配字符 `pattern1`或`pattern2` |
 | (?:pattern) | 匹配pattern但不获取匹配的子字符串（shy groups），也就是说这是一个非获取匹配，不存储匹配的子字符串用于向后引用。这在使用或字符“(|)”来组合一个模式的各个部分是很有用。例如“industr(?:y|ies)”就是一个比“industry|industries”更简略的表达式。 |
 | (?=pattern) | 正向肯定预查：在任何匹配pattern的字符串开始处匹配查找字符串。这是一个非获取匹配。第一部分的表达式的后面必须是先行预查表达式。返回的匹配结果仅包含与第一部分表达式匹配的文本。要在一个括号内定义一个正向肯定预查，在括号中问号和等号是这样使用的 `(?=...)`。正向肯定预查表达式写在括号中的等号后面。 例如正则表达式 `(T|t)he(?=\sfat)`，表示：匹配大写字母 T 或小写字母 t，后面跟字母 h，后跟字母 e。 在括号中，我们定义了正向肯定预查，它会引导正则表达式引擎匹配后面跟着 `fat` 的 `The` 或 `the`。 |
@@ -215,6 +216,9 @@
 
 34 IP地址：((?:(?:25[0-5]|2[0-4]\\d|[01]?\\d?\\d)\\.){3}(?:25[0-5]|2[0-4]\\d|[01]?\\d?\\d))
 
+
+## 正则匹配经典用法
+* 匹配有重复连续字母的字符串，如`allochirally`, `anticovenanting`, `barbary`，使用`\n`，第一个连续字符使用`(pattern)`匹配，后面的重复项使用`\n`匹配，`n`表示`(pattern)`在所有`(pattern)`中的序号，序号从1开始：`([a-z]{3})[a-z]*\1`
 
 ## 参考
 - [Regular expression - Wikipedia](https://en.wikipedia.org/wiki/Regular_expression)
