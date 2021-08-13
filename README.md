@@ -57,5 +57,6 @@
 ```
 
 ## 参考
-[cdoco/common-regex](https://github.com/cdoco/common-regex)  
-[fighting41love/funNLP](https://github.com/fighting41love/funNLP)  
+- [cdoco/common-regex](https://github.com/cdoco/common-regex)  
+- [fighting41love/funNLP](https://github.com/fighting41love/funNLP)  
+- [VincentSit/ChinaMobilePhoneNumberRegex](https://github.com/VincentSit/ChinaMobilePhoneNumberRegex) - 一组匹配中国大陆手机号码的正则表达式
